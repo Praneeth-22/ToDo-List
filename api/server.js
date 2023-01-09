@@ -28,10 +28,28 @@ app.get("/todos", async (req, res) => {
   res.json(todos);
 });
 
-app.get("/todo/new", (req, res) => {
+app.post("/todo/new", (req, res) => {
   //creates a new collection in the database
   const todo = new Todo({
-    text: req.body.text,
+    text: req.body.text, 
   });
+  todo.save()
+  res.json(todo)
 });
+
+app.delete('/todo/delete/:id',async(req,res)=>{
+  const result = await Todo.findByIdAndDelete(req.params.id)
+  res.json(result)
+})
+
+app.put('/todo/complete/:id',async(req,res)=>{
+  const todo = await Todo.findById(req.params.id)
+  todo.complete = !todo.complete
+  todo.save()
+  res.json(todo)
+})
+
+
+
+
 app.listen(3001, () => console.log("Server started on port 3001"));
