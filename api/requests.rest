@@ -14,4 +14,10 @@ DELETE http://localhost:3001/todo/delete/63ba3a80a7f3934312189068
 
 //Put
 ###
-PUT http://localhost:3001/todo/complete/63bb9b41dbb566c1348cbcf5
+GET http://localhost:3001/todo/complete/63bb9b41dbb566c1348cbcf5
+###
+PUT http://localhost:3001/todo/update/60e585d86177f95ff0574323 
+Content-Type: application/json
+{
+"text": "Go Shopping for Milk"
+}
